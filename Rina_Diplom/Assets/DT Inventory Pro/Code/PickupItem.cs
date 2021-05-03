@@ -77,6 +77,21 @@ namespace DTInventory
                     if (Input.GetKeyDown(pickupKey))
                         inventory.AddItem(hit.collider.GetComponent<Item>());
                 }
+                
+                if (hit.collider.CompareTag("Button") && hit.collider.GetComponent<DoorOpen>() != null)
+                {
+                    var doorOpen = hit.collider.GetComponent<DoorOpen>();
+
+                    if (itemNameTooltip)
+                    {
+                        itemNameTooltip.text = string.Format("{0}", doorOpen.title);
+                    }
+
+                    if (Input.GetKeyDown(pickupKey) && inventory.HasItem(doorOpen.itemId))
+                    {
+                        doorOpen.Open();
+                    }
+                }
 
                 if (hit.collider.CompareTag("LootBox") && hit.collider.GetComponent<LootBox>() != null && !InventoryManager.showInventory)
                 {

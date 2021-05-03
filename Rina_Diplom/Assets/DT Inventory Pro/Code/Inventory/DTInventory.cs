@@ -347,6 +347,19 @@ namespace DTInventory
             }
         }
 
+        public bool HasItem(int id)
+        {
+            foreach (InventoryItem inventoryItem in inventoryItems)
+            {
+                if (inventoryItem.item.id == id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
         /// <summary>
         /// Use this method to add item to inventory
         /// </summary>
