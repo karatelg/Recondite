@@ -52425,12 +52425,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 215779526}
-  title: Button
   itemId: 100
-  opened: {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
-  closed: {fileID: 2100000, guid: e43e0848fad28db439d9411118a7fc32, type: 2}
-  outlineColorOpened: {r: 0.086908154, g: 0.6538439, b: 0.8773585, a: 1}
-  outlineColorClosed: {r: 0.9254902, g: 0.1882353, b: 0.19607843, a: 1}
+  openedStateData:
+    material: {fileID: 0}
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    title: 
+  closedStateData:
+    material: {fileID: 0}
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    title: 
 --- !u!65 &1068226845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64731,12 +64734,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 215779526}
-  title: Button
   itemId: 100
-  opened: {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
-  closed: {fileID: 2100000, guid: e43e0848fad28db439d9411118a7fc32, type: 2}
-  outlineColorOpened: {r: 0.086908154, g: 0.6538439, b: 0.8773585, a: 1}
-  outlineColorClosed: {r: 0.9245283, g: 0.18752226, b: 0.19488862, a: 1}
+  openedStateData:
+    material: {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
+    outlineColor: {r: 0.086908154, g: 0.6538439, b: 0.8773585, a: 1}
+    title: Open The Door
+  closedStateData:
+    material: {fileID: 2100000, guid: e43e0848fad28db439d9411118a7fc32, type: 2}
+    outlineColor: {r: 0.9245283, g: 0.18752226, b: 0.19488862, a: 1}
+    title: Find Card
 --- !u!114 &1319954182
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,33 +1,37 @@
+using System;
 using UnityEngine;
+
+
+[Serializable]
+public class DoorStateData
+{
+    public Material material;
+    public Color outlineColor = Color.white;
+    public string title;
+}
 
 public class DoorOpen : MonoBehaviour
 {
     public Animation anim;
 
-    public string title;
-
     public int itemId;
 
-    public Material opened;
-    public Material closed;
+    [SerializeField] private DoorStateData openedStateData;
+    [SerializeField] private DoorStateData closedStateData;
 
-    [SerializeField]
-    private Color outlineColorOpened = Color.white;
-    
-    [SerializeField]
-    private Color outlineColorClosed = Color.white;
-    
     private DTInventory.DTInventory _inventory;
 
     private MeshRenderer _meshRenderer;
 
     private Outline _outline;
-    
+
+    public string Title { get; private set; }
+
     private void Start()
     {
         _outline = GetComponent<Outline>();
         _meshRenderer = GetComponent<MeshRenderer>();
-        
+
         if (_inventory == null)
             _inventory = FindObjectOfType<DTInventory.DTInventory>();
     }
@@ -37,24 +41,26 @@ public class DoorOpen : MonoBehaviour
     {
         if (_inventory.HasItem(itemId))
         {
-            _meshRenderer.material = opened;
-            SetOutlineColor(outlineColorOpened);
+            SetOutlineColor(openedStateData);
         }
         else
         {
-            _meshRenderer.material = closed;
-            SetOutlineColor(outlineColorClosed);
+            SetOutlineColor(closedStateData);
         }
     }
 
-    void SetOutlineColor(Color value)
+    void SetOutlineColor(DoorStateData data)
     {
+        _meshRenderer.material = data.material;
+
+        Title = data.title;
+        
         if (_outline != null)
         {
-            _outline.OutlineColor = value;
+            _outline.OutlineColor = data.outlineColor;
         }
     }
-    
+
     public void Open()
     {
         anim.Play();
