@@ -44147,8 +44147,8 @@ MonoBehaviour:
   equipmentPanels:
   - {fileID: 1321574439}
   - {fileID: 595951411}
-  dragItemOutsideToDrop: 0
-  player: {fileID: 0}
+  dragItemOutsideToDrop: 1
+  player: {fileID: 355749285}
   levelPoint: {fileID: 0}
   distanceAwayFromPlayerToDrop: 1
   autoEquipItems: 1
@@ -59855,6 +59855,7 @@ GameObject:
   - component: {fileID: 1239713766}
   - component: {fileID: 1239713765}
   - component: {fileID: 1239713764}
+  - component: {fileID: 1239713770}
   m_Layer: 8
   m_Name: Key
   m_TagString: Item
@@ -59980,6 +59981,22 @@ Transform:
   m_Father: {fileID: 1984741339}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 80.785, y: -10.069, z: -3.8100002}
+--- !u!54 &1239713770
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239713763}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1239888630
 GameObject:
   m_ObjectHideFlags: 0
@@ -80330,6 +80347,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597778124572304489, guid: cb5ae73ccbd7ecb4493efd0edea40791,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.506
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597778124572304489, guid: cb5ae73ccbd7ecb4493efd0edea40791,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0787
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597778124572304489, guid: cb5ae73ccbd7ecb4493efd0edea40791,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb5ae73ccbd7ecb4493efd0edea40791, type: 3}
