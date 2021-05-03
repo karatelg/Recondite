@@ -136,6 +136,11 @@ namespace FPSControllerLPFP
         private void FixedUpdate()
         {
             // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                return;
+            }
+            
             RotateCameraAndCharacter();
             MoveCharacter();
             _isGrounded = false;

@@ -57,7 +57,7 @@ namespace DTInventory
         {
             RaycastHit hit = new RaycastHit();
 
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, raycastPickupDistance))
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, raycastPickupDistance, LayerMask.GetMask("Interaction")))
             {
                 if(itemNameTooltip)
                     itemNameTooltip.text = string.Empty;
