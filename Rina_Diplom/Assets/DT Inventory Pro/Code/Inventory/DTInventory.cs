@@ -443,7 +443,7 @@ namespace DTInventory
             return false;
         }
 
-        public void SelectItem(InventoryItem item)
+        public void ClearItemSelect()
         {
             foreach (var slot in slots)
             {
@@ -451,6 +451,12 @@ namespace DTInventory
                 else slot.image.color = hoveredCellColor;
                 slot.selected = false;
             }
+            itemDesctibe.text = "";
+        }
+        
+        public void SelectItem(InventoryItem item)
+        {
+            ClearItemSelect();
 
             int i = item.x;
             int j = item.y;

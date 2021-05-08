@@ -121,6 +121,8 @@ namespace DTInventory
         //Here we processing the moment when we start dragging an item
         public void OnBeginDrag(PointerEventData eventData)
         {
+            inventory.ClearItemSelect();
+            
             transform.SetParent(inventory.transform);
             
             //Turn of raycastTarget to prevent unexpected raycasts
