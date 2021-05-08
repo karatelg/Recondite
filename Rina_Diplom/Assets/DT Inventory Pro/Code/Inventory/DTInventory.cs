@@ -351,6 +351,12 @@ namespace DTInventory
 
         private void Update()
         {
+
+            if (InventoryManager.showInventory && Input.GetMouseButton(0))
+            {
+                ClearItemSelect();
+            }
+            
             if (!InventoryManager.showInventory && activeLootBox != null)
             {
                 activeLootBox.lootBoxItems = new List<Item>();
