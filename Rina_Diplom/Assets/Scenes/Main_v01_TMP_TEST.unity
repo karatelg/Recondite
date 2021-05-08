@@ -27777,7 +27777,7 @@ MonoBehaviour:
 
     SPACE - jump
 
-    L
+    F
     - flashlight
 
     E - pickup / interact
@@ -28954,8 +28954,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114520242229881960, guid: 80e0dcfcf389c8942afb3c37cc2f6528,
         type: 3}
+      propertyPath: jumpForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114520242229881960, guid: 80e0dcfcf389c8942afb3c37cc2f6528,
+        type: 3}
       propertyPath: runningSpeed
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114520242229881960, guid: 80e0dcfcf389c8942afb3c37cc2f6528,
         type: 3}
@@ -28965,7 +28970,7 @@ PrefabInstance:
     - target: {fileID: 114520242229881960, guid: 80e0dcfcf389c8942afb3c37cc2f6528,
         type: 3}
       propertyPath: mouseSensitivity
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 136771488867463304, guid: 80e0dcfcf389c8942afb3c37cc2f6528,
         type: 3}
@@ -67883,7 +67888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7066f47c28cbc0f48a6e1d67184b7604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  control: 108
+  control: 102
   timeout: 90
   _light: {fileID: 852804318}
   min: 1
