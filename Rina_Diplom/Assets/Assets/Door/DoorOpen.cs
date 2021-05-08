@@ -1,5 +1,7 @@
 using System;
+using System.Data.Common;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [Serializable]
@@ -12,16 +14,18 @@ public class DoorStateData
 
 public class DoorOpen : MonoBehaviour
 {
-    public Animation anim;
-
     public int itemId;
-
+    
     [SerializeField] private DoorStateData openedStateData;
     [SerializeField] private DoorStateData closedStateData;
 
     private DTInventory.DTInventory _inventory;
 
     private MeshRenderer _meshRenderer;
+
+    public Door door;
+
+    public bool IsOpened { get; private set; } = false;
 
     private Outline _outline;
 
@@ -39,7 +43,8 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_inventory.HasItem(itemId))
+
+        if (IsOpened || _inventory.HasItem(itemId))
         {
             SetOutlineColor(openedStateData);
         }
@@ -47,22 +52,33 @@ public class DoorOpen : MonoBehaviour
         {
             SetOutlineColor(closedStateData);
         }
+        
+        if (IsOpened)
+        {
+            _meshRenderer.material = openedStateData.material;
+        }
+        else
+        {
+            _meshRenderer.material = closedStateData.material;
+        }
     }
 
     void SetOutlineColor(DoorStateData data)
     {
-        _meshRenderer.material = data.material;
-
         Title = data.title;
-        
+
         if (_outline != null)
         {
             _outline.OutlineColor = data.outlineColor;
         }
     }
-
+    
     public void Open()
     {
-        anim.Play();
+        if (IsOpened || _inventory.HasItem(itemId))
+        {
+            IsOpened = true;
+            door.Open();
+        }
     }
 }

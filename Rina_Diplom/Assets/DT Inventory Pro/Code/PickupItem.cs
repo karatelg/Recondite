@@ -87,7 +87,7 @@ namespace DTInventory
                         itemNameTooltip.text = string.Format("{0}", doorOpen.Title);
                     }
 
-                    if (Input.GetKeyDown(pickupKey) && inventory.HasItem(doorOpen.itemId))
+                    if (Input.GetKeyDown(pickupKey))
                     {
                         doorOpen.Open();
                     }

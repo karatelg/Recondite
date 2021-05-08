@@ -16,7 +16,7 @@ filters = {
 	asset = true
 }
 scopes = {
-	"last_search.AB59B443" = "door key"
+	"last_search.AB59B443" = "door with"
 }
 providers = {
 	asset = {

@@ -10,6 +10,7 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="_www.unityassetcollection.com.txt" t="Include" />
         <e p="Assets" t="Include">
           <e p="Door" t="Include">
             <e p="DoorOpen.cs" t="Include" />
@@ -36,6 +37,7 @@
             </e>
           </e>
         </e>
+        <e p="Door.cs" t="Include" />
         <e p="DoorTrigger.cs" t="Include" />
         <e p="DT Inventory Pro" t="Include">
           <e p="Code" t="Include">
@@ -89,6 +91,9 @@
           </e>
         </e>
         <e p="Flash.cs" t="Include" />
+        <e p="Journal" t="Include">
+          <e p="Journal.cs" t="Include" />
+        </e>
         <e p="Low Poly FPS Pack" t="Include">
           <e p="Components" t="Include">
             <e p="Demo_Scene_Components" t="Include">
@@ -184,6 +189,17 @@
           </e>
         </e>
         <e p="Readme.txt" t="Include" />
+        <e p="SCI-FI UI Pack_Components v1" t="Include">
+          <e p="Resources_V1" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="CircleSlider.cs" t="Include" />
+              <e p="JustRotate.cs" t="Include" />
+              <e p="PressedBtn.cs" t="Include" />
+              <e p="SliderRunTo1.cs" t="Include" />
+              <e p="SliderValuePass.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="Flashlight.cs" t="Include" />
           <e p="Teleport.cs" t="Include" />
