@@ -451,8 +451,8 @@ namespace DTInventory
                 else slot.image.color = hoveredCellColor;
                 slot.selected = false;
             }
-
-            itemDesctibe.enabled = false;
+            
+            itemDesctibe.gameObject.SetActive(false);
         }
         
         public void SelectItem(InventoryItem item)
@@ -469,7 +469,7 @@ namespace DTInventory
                 slot.image.color = selectedCellColor;
                 if (itemDesctibe)
                 {
-                    itemDesctibe.enabled = true;
+                    itemDesctibe.gameObject.SetActive(true);
                     itemDesctibe.text = item.item.description;
                 }
             }
