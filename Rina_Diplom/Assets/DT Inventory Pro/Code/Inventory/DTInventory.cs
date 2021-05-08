@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -9,20 +10,26 @@ namespace DTInventory
     /// <summary>
     /// Event to provide callback for item add case
     /// </summary>
-    public class OnInventoryItemAdd : UnityEvent { }
+    public class OnInventoryItemAdd : UnityEvent
+    {
+    }
 
     [System.Serializable]
     /// <summary>
     /// Event to provide callback for item drop case
     /// </summary>
-    public class OnInventoryItemDrop : UnityEvent { }
+    public class OnInventoryItemDrop : UnityEvent
+    {
+    }
 
     [System.Serializable]
     /// <summary>
     /// Event to provide callback for item remove case
     /// </summary>
-    public class OnInventoryItemRemove : UnityEvent { }
-    
+    public class OnInventoryItemRemove : UnityEvent
+    {
+    }
+
     /// <summary>
     /// Main core class of inventory system
     /// </summary>
@@ -42,22 +49,23 @@ namespace DTInventory
         /// Equipment panels which stores items that havs being equiped on player
         /// </summary>
         public List<EquipmentPanel> equipmentPanels;
-        
+
         /// <summary>
         /// Should item be dropped by dragging it outside of inventory bounds?
         /// </summary>
         public bool dragItemOutsideToDrop = false;
-        
+
         /// <summary>
         /// Player's transform. We drop items at player position point + player forward
         /// </summary>
         public Transform player;
 
+        public Text itemDesctibe;
+
         /// <summary>
         /// It's a transform to store scene root to drop items from DontDestroyOnLoad to active scene
         /// </summary>
-        [HideInInspector]
-        public Transform levelPoint;
+        [HideInInspector] public Transform levelPoint;
 
         public float distanceAwayFromPlayerToDrop = 1f;
 
@@ -112,10 +120,15 @@ namespace DTInventory
         /// Cell color when in normal state
         /// </summary>
         [HideInInspector] public Color normalCellColor;
+
         /// <summary>
         /// Cell color when hovered by item
         /// </summary>
         [HideInInspector] public Color hoveredCellColor;
+
+
+        [HideInInspector] public Color selectedCellColor;
+
         /// <summary>
         /// Cell color when it's blocked for hovered item
         /// </summary>
@@ -151,7 +164,8 @@ namespace DTInventory
                     var _cell = Instantiate(cell);
                     _cell.rectTransform.SetParent(transform);
                     _cell.rectTransform.sizeDelta = new Vector2(cellSize - padding, cellSize - padding);
-                    _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
+                    _cell.rectTransform.anchoredPosition =
+                        new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
                     _cell.rectTransform.localScale = new Vector2(1, 1);
 
                     _cell.name = i + "," + j;
@@ -170,7 +184,8 @@ namespace DTInventory
                         var _cell = Instantiate(cell);
                         _cell.rectTransform.SetParent(lootPanel);
                         _cell.rectTransform.sizeDelta = new Vector2(cellSize - padding, cellSize - padding);
-                        _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
+                        _cell.rectTransform.anchoredPosition =
+                            new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
                         _cell.rectTransform.localScale = new Vector2(1, 1);
 
                         _cell.name = i + "," + j;
@@ -189,11 +204,11 @@ namespace DTInventory
                     {
                         for (int j = 0; j < equipmentPanels[k].height; j++)
                         {
-
                             var _cell = Instantiate(cell);
                             _cell.rectTransform.SetParent(equipmentPanels[k].transform);
                             _cell.rectTransform.sizeDelta = new Vector2(cellSize - padding, cellSize - padding);
-                            _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
+                            _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding),
+                                ((-cellSize * j) + padding));
                             _cell.rectTransform.localScale = new Vector2(1, 1);
 
                             _cell.name = i + (k + 1) * 100 + "," + j + (k + 1) * 100;
@@ -229,7 +244,7 @@ namespace DTInventory
             {
                 foreach (var previewSlot in FindObjectsOfType<GridSlot>())
                 {
-                    if(previewSlot.gameObject.name != "Utility object (Don't delete!)")
+                    if (previewSlot.gameObject.name != "Utility object (Don't delete!)")
                         DestroyImmediate(previewSlot.gameObject);
                 }
             }
@@ -240,8 +255,8 @@ namespace DTInventory
         /// </summary>
         public void Initialize()
         {
-            if(SaveData.instance == null)
-            ClearPreview();
+            if (SaveData.instance == null)
+                ClearPreview();
 
             inventoryManager = FindObjectOfType<InventoryManager>();
 
@@ -253,7 +268,8 @@ namespace DTInventory
                     var _cell = Instantiate(cell);
                     _cell.rectTransform.SetParent(transform);
                     _cell.rectTransform.sizeDelta = new Vector2(cellSize - padding, cellSize - padding);
-                    _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
+                    _cell.rectTransform.anchoredPosition =
+                        new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
                     _cell.rectTransform.localScale = new Vector2(1, 1);
 
                     _cell.name = i + "," + j;
@@ -261,7 +277,8 @@ namespace DTInventory
                     var slot = _cell.GetComponent<GridSlot>();
                     slot.free = true;
                     slot.image.color = normalCellColor;
-                    slot.x = i; slot.y = j;
+                    slot.x = i;
+                    slot.y = j;
                     slots.Add(slot);
                 }
             }
@@ -276,7 +293,8 @@ namespace DTInventory
                         var _cell = Instantiate(cell);
                         _cell.rectTransform.SetParent(lootPanel);
                         _cell.rectTransform.sizeDelta = new Vector2(cellSize - padding, cellSize - padding);
-                        _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
+                        _cell.rectTransform.anchoredPosition =
+                            new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
                         _cell.rectTransform.localScale = new Vector2(1, 1);
 
                         _cell.name = i + "," + j;
@@ -284,7 +302,8 @@ namespace DTInventory
                         var slot = _cell.GetComponent<GridSlot>();
                         slot.free = true;
                         slot.image.color = normalCellColor;
-                        slot.x = i + 9000; slot.y = j + 9000;
+                        slot.x = i + 9000;
+                        slot.y = j + 9000;
                         slot.isLoot = true;
                         slots.Add(slot);
                     }
@@ -300,11 +319,11 @@ namespace DTInventory
                     {
                         for (int j = 0; j < equipmentPanels[k].height; j++)
                         {
-
                             var _cell = Instantiate(cell);
                             _cell.rectTransform.SetParent(equipmentPanels[k].transform);
                             _cell.rectTransform.sizeDelta = new Vector2(cellSize - padding, cellSize - padding);
-                            _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding), ((-cellSize * j) + padding));
+                            _cell.rectTransform.anchoredPosition = new Vector2(((cellSize * i) + padding),
+                                ((-cellSize * j) + padding));
                             _cell.rectTransform.localScale = new Vector2(1, 1);
 
                             _cell.name = i + (k + 1) * 100 + "," + j + (k + 1) * 100;
@@ -313,7 +332,8 @@ namespace DTInventory
                             slot.free = true;
                             slot.image.color = normalCellColor;
                             slot.equipmentPanel = equipmentPanels[k];
-                            slot.x = i + (k + 1) * 100; slot.y = j + (k + 1) * 100;
+                            slot.x = i + (k + 1) * 100;
+                            slot.y = j + (k + 1) * 100;
                             slots.Add(slot);
 
                             if (i == 0 && j == 0)
@@ -343,6 +363,7 @@ namespace DTInventory
                         RemoveInventoryItem(item);
                     }
                 }
+
                 activeLootBox = null;
             }
         }
@@ -359,7 +380,7 @@ namespace DTInventory
 
             return false;
         }
-        
+
         /// <summary>
         /// Use this method to add item to inventory
         /// </summary>
@@ -374,8 +395,10 @@ namespace DTInventory
                 var _InventoryItemImage = _InventoryItem.GetComponent<Image>();
 
                 _InventoryItemImage.rectTransform.SetParent(transform);
-                _InventoryItemImage.rectTransform.sizeDelta = new Vector2(cellSize * item.width - padding, cellSize * item.height - padding);
-                _InventoryItemImage.rectTransform.anchoredPosition = _slot.GetComponent<RectTransform>().anchoredPosition;
+                _InventoryItemImage.rectTransform.sizeDelta =
+                    new Vector2(cellSize * item.width - padding, cellSize * item.height - padding);
+                _InventoryItemImage.rectTransform.anchoredPosition =
+                    _slot.GetComponent<RectTransform>().anchoredPosition;
                 _InventoryItemImage.color = Color.white;
                 _InventoryItemImage.sprite = item.icon;
 
@@ -398,12 +421,13 @@ namespace DTInventory
                 item.transform.parent = this.transform;
 
                 item.gameObject.SetActive(false);
-                
+
                 if (autoEquipItems)
                 {
                     foreach (var equipmentPanel in equipmentPanels)
                     {
-                        if (equipmentPanel.allowedItemType == _InventoryItem.item.type && equipmentPanel.equipedItem == null)
+                        if (equipmentPanel.allowedItemType == _InventoryItem.item.type &&
+                            equipmentPanel.equipedItem == null)
                         {
                             EquipItem(equipmentPanel, _InventoryItem);
                             MarkSlots(_slot.x, _slot.y, item.width, item.height, true);
@@ -415,7 +439,32 @@ namespace DTInventory
 
                 return true;
             }
+
             return false;
+        }
+
+        public void SelectItem(InventoryItem item)
+        {
+            foreach (var slot in slots)
+            {
+                if (slot.free) slot.image.color = normalCellColor;
+                else slot.image.color = hoveredCellColor;
+                slot.selected = false;
+            }
+
+            int i = item.x;
+            int j = item.y;
+
+            if (FindSlotByIndex(i, j))
+            {
+                var slot = FindSlotByIndex(i, j);
+                slot.selected = true;
+                slot.image.color = selectedCellColor;
+                if (itemDesctibe)
+                {
+                    itemDesctibe.text = item.item.description;
+                }
+            }
         }
 
         /// <summary>
@@ -432,9 +481,12 @@ namespace DTInventory
                 var _InventoryItem = Instantiate(cell).gameObject.AddComponent<InventoryItem>();
                 var _InventoryItemImage = _InventoryItem.GetComponent<Image>();
 
-                _InventoryItemImage.rectTransform.SetParent(FindSlotByIndex(x, y).GetComponent<RectTransform>().transform.parent);
-                _InventoryItemImage.rectTransform.sizeDelta = new Vector2(cellSize * item.width - padding, cellSize * item.height - padding);
-                _InventoryItemImage.rectTransform.anchoredPosition = FindSlotByIndex(x, y).GetComponent<RectTransform>().anchoredPosition;
+                _InventoryItemImage.rectTransform.SetParent(FindSlotByIndex(x, y).GetComponent<RectTransform>()
+                    .transform.parent);
+                _InventoryItemImage.rectTransform.sizeDelta =
+                    new Vector2(cellSize * item.width - padding, cellSize * item.height - padding);
+                _InventoryItemImage.rectTransform.anchoredPosition =
+                    FindSlotByIndex(x, y).GetComponent<RectTransform>().anchoredPosition;
 
                 _InventoryItem.item = item;
 
@@ -461,7 +513,8 @@ namespace DTInventory
                 {
                     foreach (var equipmentPanel in equipmentPanels)
                     {
-                        if (equipmentPanel.allowedItemType == _InventoryItem.item.type && equipmentPanel.equipedItem == null)
+                        if (equipmentPanel.allowedItemType == _InventoryItem.item.type &&
+                            equipmentPanel.equipedItem == null)
                         {
                             EquipItem(equipmentPanel, _InventoryItem);
                             MarkSlots(x, y, item.width, item.height, true);
@@ -473,6 +526,7 @@ namespace DTInventory
 
                 return true;
             }
+
             return false;
         }
 
@@ -511,7 +565,8 @@ namespace DTInventory
             _temp_height = InventoryItem.height;
 
             InventoryItem.item.gameObject.SetActive(true);
-            InventoryItem.item.transform.position = player.transform.position + player.transform.forward * distanceAwayFromPlayerToDrop;
+            InventoryItem.item.transform.position =
+                player.transform.position + player.transform.forward * distanceAwayFromPlayerToDrop;
 
             if (levelPoint != null)
             {
@@ -590,7 +645,17 @@ namespace DTInventory
                         var slot = FindSlotByIndex(i, j);
                         slot.free = isFree;
 
-                        if (slot.free) slot.image.color = normalCellColor; else slot.image.color = hoveredCellColor;
+                        if (slot.free) slot.image.color = normalCellColor;
+                        else slot.image.color = hoveredCellColor;
+
+                        // if (slot.selected)
+                        // {
+                        //     slot.image.color = selectedCellColor;
+                        // }
+                        // else
+                        // {
+                        //        
+                        // }
                     }
                 }
             }
@@ -657,7 +722,7 @@ namespace DTInventory
                     {
                         if (slot.free)
                             slot.image.color = hoveredCellColor;
-                        else 
+                        else
                             slot.image.color = blockedCellColor;
                     }
                 }
@@ -681,12 +746,12 @@ namespace DTInventory
 
                     if (slot != null)
                     {
-                         slot.image.color = hoveredCellColor;
+                        slot.image.color = hoveredCellColor;
                     }
                 }
             }
         }
-        
+
         /// <summary>
         /// Method to check if we have enough space to pickup something
         /// </summary>
@@ -743,7 +808,6 @@ namespace DTInventory
             }
             else
                 return null;
-
         }
 
         /// <summary>
@@ -760,7 +824,7 @@ namespace DTInventory
             temp_height = InventoryItem.height;
 
             inventoryItems.Remove(InventoryItem);
-            
+
             Destroy(InventoryItem.gameObject);
 
             MarkSlots(temp_x, temp_y, temp_width, temp_height, true);
@@ -813,7 +877,8 @@ namespace DTInventory
         {
             foreach (var slot in slots)
             {
-                if (CheckFreeSpaceAtSlot(slot.x, slot.y, width, height) && slot.equipmentPanel == null && slot.isLoot == true)
+                if (CheckFreeSpaceAtSlot(slot.x, slot.y, width, height) && slot.equipmentPanel == null &&
+                    slot.isLoot == true)
                     return CheckFreeSpaceAtSlot(slot.x, slot.y, width, height);
             }
 
@@ -879,7 +944,6 @@ namespace DTInventory
             {
                 return;
             }
-
         }
 
         /// <summary>
@@ -918,23 +982,22 @@ namespace DTInventory
         /// <param name="closeInventory">Should inventory be closed after use?</param>
         public void UseItem(InventoryItem InventoryItem, bool closeInventory)
         {
-                // If not stackable
-                if (!InventoryItem.item.stackable || InventoryItem.item.stackSize <= 1)
-                {
-                    InventoryItem.item.onUseEvent.Invoke();
-                    RemoveItem(InventoryItem);
-                }
-                // If stackable
-                else
-                {
-                    InventoryItem.item.onUseEvent.Invoke();
-                    InventoryItem.item.stackSize -= 1;
-                }
-            
+            // If not stackable
+            if (!InventoryItem.item.stackable || InventoryItem.item.stackSize <= 1)
+            {
+                InventoryItem.item.onUseEvent.Invoke();
+                RemoveItem(InventoryItem);
+            }
+            // If stackable
+            else
+            {
+                InventoryItem.item.onUseEvent.Invoke();
+                InventoryItem.item.stackSize -= 1;
+            }
+
 
             if (closeInventory)
                 InventoryManager.showInventory = false;
         }
     }
 }
-

@@ -11,6 +11,9 @@ namespace DTInventory
         [HideInInspector]
         public bool free;
 
+        [HideInInspector]
+        public bool selected;
+        
         //Slot coordinates in inventory grid 
         [HideInInspector]
         public int x, y;

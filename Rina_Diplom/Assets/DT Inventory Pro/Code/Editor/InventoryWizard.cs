@@ -26,7 +26,10 @@ namespace DTInventory
         private bool HasEquipmentSlots = false;
         private int EquipmentSlotsNumber;
 
-        private Color normalCellColor = Color.white, hoveredCellColor = Color.grey, blockedCellCover = Color.red;
+        private Color normalCellColor = Color.white, hoveredCellColor = Color.grey, blockedCellCover = Color.red, selectedCellColor = Color.green; 
+        
+        
+        
         private Color inventoryBackgroundColor = Color.white;
 
         private Color stackTextColor = Color.gray;
@@ -80,6 +83,8 @@ namespace DTInventory
 
                 normalCellColor = EditorGUILayout.ColorField("Normal cell color", normalCellColor);
                 hoveredCellColor = EditorGUILayout.ColorField("Hovered cell color", hoveredCellColor);
+                selectedCellColor = EditorGUILayout.ColorField("Selected cell color", selectedCellColor);
+                
                 blockedCellCover = EditorGUILayout.ColorField("Blocked cell color", blockedCellCover);
 
                 stackTextFont = (Font)EditorGUILayout.ObjectField("Stack text font", stackTextFont, typeof(Font), false);
@@ -148,6 +153,7 @@ namespace DTInventory
                     inventory.normalCellColor = normalCellColor;
                     inventory.blockedCellColor = blockedCellCover;
                     inventory.hoveredCellColor = hoveredCellColor;
+                    inventory.selectedCellColor = selectedCellColor;
 
                     // Making inventory grid cell object
 

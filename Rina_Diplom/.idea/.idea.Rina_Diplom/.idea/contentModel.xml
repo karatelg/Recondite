@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Bruyn\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Bruyn\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Rina_Diplom.-2124484375.00" t="ExcludeRecursive" />
-    <e p="D:\Recondite\Rina_Diplom" t="IncludeRecursive">
+    <e p="C:\Users\vgolohvastov\AppData\local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\vgolohvastov\AppData\local\JetBrains\Rider2020.3\resharper-host\local\Transient\Rider\v203\SolutionCaches\_Rina_Diplom.-122081856.00" t="ExcludeRecursive" />
+    <e p="C:\Users\vgolohvastov\AppData\Roaming\JetBrains\Rider2020.3\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\vgolohvastov\Desktop\Recondite\Rina_Diplom" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
@@ -124,6 +125,7 @@
             </e>
           </e>
         </e>
+        <e p="PlayerPrefs.xml" t="Include" />
         <e p="Polygon Arsenal" t="Include">
           <e p="Demo" t="Include">
             <e p="Scripts" t="Include">

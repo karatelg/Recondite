@@ -114,6 +114,8 @@ namespace DTInventory
                 if (inventory.CheckFreeSpaceForAllSlots(item.width, item.height))
                     inventory.SubstractStack(this);
             }
+
+            inventory.SelectItem(this);
         }
 
         //Here we processing the moment when we start dragging an item

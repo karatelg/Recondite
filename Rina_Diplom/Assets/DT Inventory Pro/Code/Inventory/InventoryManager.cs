@@ -128,6 +128,10 @@ namespace DTInventory
                 canvas.enabled = true;
                 OnOpen.Invoke();
                 isOpen = true;
+                if (inventory.itemDesctibe)
+                {
+                    inventory.itemDesctibe.text = "";   
+                }
             }
         }
 
