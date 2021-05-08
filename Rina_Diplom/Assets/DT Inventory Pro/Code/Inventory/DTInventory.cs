@@ -60,7 +60,7 @@ namespace DTInventory
         /// </summary>
         public Transform player;
 
-        public Text itemDesctibe;
+        public GameObject itemDesctibe;
 
         /// <summary>
         /// It's a transform to store scene root to drop items from DontDestroyOnLoad to active scene
@@ -458,7 +458,7 @@ namespace DTInventory
                 slot.selected = false;
             }
             
-            itemDesctibe.gameObject.SetActive(false);
+            itemDesctibe.SetActive(false);
         }
         
         public void SelectItem(InventoryItem item)
@@ -475,8 +475,8 @@ namespace DTInventory
                 slot.image.color = selectedCellColor;
                 if (itemDesctibe)
                 {
-                    itemDesctibe.gameObject.SetActive(true);
-                    itemDesctibe.text = item.item.description;
+                    itemDesctibe.SetActive(true);
+                    itemDesctibe.GetComponentInChildren<Text>().text = item.item.description;
                 }
             }
         }
