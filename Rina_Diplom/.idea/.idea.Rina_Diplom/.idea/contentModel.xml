@@ -36,6 +36,7 @@
             </e>
           </e>
         </e>
+        <e p="DoorTrigger.cs" t="Include" />
         <e p="DT Inventory Pro" t="Include">
           <e p="Code" t="Include">
             <e p="Demo" t="Include">
