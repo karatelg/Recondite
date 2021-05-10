@@ -374,19 +374,33 @@ namespace DTInventory
             }
         }
 
+        public void RemoveInventoryItem(int id)
+        {
+            InventoryItem inventoryItem = FindInventoryItem(id);
+            if (inventoryItem != null)
+            {
+                RemoveInventoryItem(inventoryItem);   
+            }
+        }
+        
         public bool HasItem(int id)
+        {
+            return FindInventoryItem(id) != null;
+        }
+
+        public InventoryItem FindInventoryItem(int id)
         {
             foreach (InventoryItem inventoryItem in inventoryItems)
             {
                 if (inventoryItem.item.id == id)
                 {
-                    return true;
+                    return inventoryItem;
                 }
             }
 
-            return false;
+            return null;
         }
-
+        
         /// <summary>
         /// Use this method to add item to inventory
         /// </summary>

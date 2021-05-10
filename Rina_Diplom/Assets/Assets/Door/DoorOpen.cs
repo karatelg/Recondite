@@ -77,6 +77,7 @@ public class DoorOpen : MonoBehaviour
     {
         if (IsOpened || _inventory.HasItem(itemId))
         {
+            _inventory.RemoveInventoryItem(itemId);
             IsOpened = true;
             door.Open();
         }
