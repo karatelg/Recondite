@@ -20,7 +20,7 @@ public class Journal : MonoBehaviour
     public JournalTask[] Tasks;
 
     public string TextCompleteAllTask = "All Tasks were Completed";
-    
+
     static private List<int> openedDoors = new List<int>();
 
     private int currentTaskIndex = 0;
@@ -63,12 +63,21 @@ public class Journal : MonoBehaviour
 
     bool IsTaskComplete(JournalTask task)
     {
+        if (IsPartTaskComplete(task))
+        {
+            return true;
+        }
+
         if (task.relatedTask != -1 && !IsTaskComplete(Tasks[task.relatedTask]))
         {
             currentTaskIndex = task.relatedTask;
-            return false;
         }
+        
+        return false;
+    }
 
+    bool IsPartTaskComplete(JournalTask task)
+    {
         if (task.DoorIndex != -1 && !openedDoors.Contains(task.DoorIndex))
         {
             return false;
@@ -78,7 +87,7 @@ public class Journal : MonoBehaviour
         {
             return false;
         }
-        
+
         return true;
     }
 }
