@@ -29,11 +29,12 @@ MonoBehaviour:
   openedStateData:
     material: {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
     outlineColor: {r: 0.0862745, g: 0.8784314, b: 0.2221577, a: 1}
-    title: '[E] Open door'
+    title: "[\u0423] \u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0434\u0432\u0435\u0440\u044C"
   closedStateData:
     material: {fileID: 2100000, guid: e43e0848fad28db439d9411118a7fc32, type: 2}
     outlineColor: {r: 0.9245283, g: 0.18752226, b: 0.19488862, a: 1}
-    title: '[Find] CARD A-4'
+    title: "[\u041D\u0430\u0439\u0434\u0438\u0442\u0435] \u041A\u041B\u042E\u0427
+      A-4"
   door: {fileID: 4863875147386541998}
 --- !u!114 &8234101771434309430
 MonoBehaviour:
