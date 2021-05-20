@@ -4,7 +4,6 @@ using System.Collections;
 
 public class Flashlight : MonoBehaviour
 {
-
     public KeyCode control = KeyCode.L; // клавиша управления фонариком, вкл/выкл и перезарядка
     public float timeout = 30; // время работы фонарика в секундах
 
@@ -55,21 +54,41 @@ public class Flashlight : MonoBehaviour
             _light.intensity = min;
         }
 
+        if (!_light.enabled)
+        {
+            curTime -= Time.deltaTime;
+
+            if (curTime < 0)
+            {
+                curTime = 0;
+            }
+
+            slider.value = 100 - (curTime / timeout) * 100;
+
+            Color curColor = maxColor;
+
+            if (slider.value < 50) curColor = halfColor;
+
+            if (slider.value < 20)
+            {
+                curColor = minColor;
+            }
+
+            sliderColor.color = Color.Lerp(sliderColor.color, curColor, 1.5f * Time.deltaTime);
+        }
+
         if (_light.enabled)
         {
             curTime += Time.deltaTime;
 
             if (curTime > timeout)
             {
-                curTime = 0;
+                curTime = timeout;
                 slider.value = 0;
                 _light.enabled = false;
             }
-            else if (curTime != 0)
-            {
-                // переводим время в диапазон значений от 0 до 100% и вычетам из 100
-                slider.value = 100 - (curTime / timeout) * 100;
-            }
+
+            slider.value = 100 - (curTime / timeout) * 100;
 
             float intensity = max;
             Color curColor = maxColor;
@@ -81,13 +100,15 @@ public class Flashlight : MonoBehaviour
                 curColor = minColor;
                 intensity = max / 1; // снижаем яркость фонарика
 
-                if (Random.Range(0, 0.9f) > 0.5f) intensity = intensity / Random.Range(1, 6); // рандомное мерцание, перед отключением
+                if (Random.Range(0, 0.9f) > 0.5f)
+                    intensity = intensity / Random.Range(1, 6); // рандомное мерцание, перед отключением
             }
 
             sliderColor.color = Color.Lerp(sliderColor.color, curColor, 1.5f * Time.deltaTime);
             _light.intensity = Mathf.Lerp(_light.intensity, intensity, 3f * Time.deltaTime);
         }
-        else if (Input.GetKey(control) && slider.value < 90 && batteryCount > 0) // перезарядка, если заряда батареи меньше 90% и есть еще запасные
+        else if (Input.GetKey(control) && slider.value < 90 && batteryCount > 0
+        ) // перезарядка, если заряда батареи меньше 90% и есть еще запасные
         {
             curReloadTime += Time.deltaTime;
             if (curReloadTime > reloadTime)

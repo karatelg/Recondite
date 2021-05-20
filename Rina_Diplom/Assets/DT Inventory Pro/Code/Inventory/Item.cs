@@ -20,6 +20,8 @@ namespace DTInventory
         public string type;
         public Sprite icon;
 
+        public Sprite icon2;
+        
         [Range(1, 10)]
         public int width = 1, height = 1;
 

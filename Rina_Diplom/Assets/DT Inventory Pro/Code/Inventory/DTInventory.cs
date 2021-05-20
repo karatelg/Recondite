@@ -479,9 +479,15 @@ namespace DTInventory
         {
             ClearItemSelect();
 
+            if (item.item.icon2 != null)
+            {
+                var _InventoryItemImage = item.GetComponent<Image>();
+                _InventoryItemImage.sprite = item.item.icon2;    
+            }
+            
             int i = item.x;
             int j = item.y;
-
+            
             if (FindSlotByIndex(i, j))
             {
                 var slot = FindSlotByIndex(i, j);

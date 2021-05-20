@@ -37,6 +37,8 @@ namespace DTInventory
             item.description = EditorGUILayout.TextField("Description", item.description);
             item.type = EditorGUILayout.TextField("Type", item.type);
             item.icon = (Sprite)EditorGUILayout.ObjectField("Item icon", item.icon, typeof(Sprite), false);
+            item.icon2 = (Sprite)EditorGUILayout.ObjectField("Item icon2", item.icon2, typeof(Sprite), false);
+            
             item.id = EditorGUILayout.IntField("ID", item.id);
 
             if (GUILayout.Button("Generate random ID?"))

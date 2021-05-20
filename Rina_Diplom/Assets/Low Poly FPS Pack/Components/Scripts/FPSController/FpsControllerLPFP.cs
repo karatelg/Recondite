@@ -53,6 +53,15 @@ namespace FPSControllerLPFP
          SerializeField]
         private float maxVerticalAngle = 90f;
 
+        [Tooltip("Crouch height."),
+         SerializeField]
+        private float crouchHeight = 1f;
+        
+        private float defaultHeight = 1f;
+        
+        [Tooltip("Crouch speed."), SerializeField]
+        private float crouchSpeed = 1;
+        
         [Tooltip("The names of the axes and buttons for Unity's Input Manager."), SerializeField]
         private FpsInput input;
 #pragma warning restore 649
@@ -75,6 +84,7 @@ namespace FPSControllerLPFP
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             _collider = GetComponent<CapsuleCollider>();
+            defaultHeight = _collider.height;
             _audioSource = GetComponent<AudioSource>();
 			arms = AssignCharactersCamera();
             _audioSource.clip = walkingSound;
@@ -151,6 +161,7 @@ namespace FPSControllerLPFP
         {
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
+            Crouch();
             PlayFootstepSounds();
         }
 
@@ -250,6 +261,18 @@ namespace FPSControllerLPFP
             return true;
         }
 
+        private void Crouch()
+        {
+            if (input.Crouch)
+            {
+                _collider.height = Mathf.Lerp(_collider.height, crouchHeight, crouchSpeed * Time.deltaTime);    
+            }
+            else
+            {
+                _collider.height = Mathf.Lerp(_collider.height, defaultHeight, crouchSpeed * Time.deltaTime);
+            }
+        }
+        
         private void Jump()
         {
             if (!_isGrounded || !input.Jump) return;
@@ -345,6 +368,10 @@ namespace FPSControllerLPFP
              SerializeField]
             private string jump = "Jump";
 
+            [Tooltip("The name of the virtual button mapped to crouch."),
+             SerializeField]
+            private string crouch = "Crouch";
+            
             /// Returns the value of the virtual axis mapped to rotate the camera around the y axis.
             public float RotateX
             {
@@ -379,6 +406,11 @@ namespace FPSControllerLPFP
             public bool Jump
             {
                 get { return Input.GetButtonDown(jump); }
+            }
+
+            public bool Crouch
+            {
+                get { return Input.GetButton(crouch); }
             }
         }
     }
