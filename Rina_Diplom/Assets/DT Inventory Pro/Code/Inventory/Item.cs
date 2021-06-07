@@ -16,10 +16,9 @@ namespace DTInventory
 
         public int id;
         public string title;
-
-        [Multiline]
+        
         public string description;
-
+        
         public string type;
         public Sprite icon;
 

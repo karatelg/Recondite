@@ -34,7 +34,7 @@ namespace DTInventory
             GUILayout.Label("General item settings", EditorStyles.boldLabel);
             GUILayout.BeginVertical("HelpBox");
             item.title = EditorGUILayout.TextField("Name", item.title);
-            item.description = EditorGUILayout.TextField("Description", item.description);
+            item.description = EditorGUILayout.TextArea(item.description);
             item.type = EditorGUILayout.TextField("Type", item.type);
             item.icon = (Sprite)EditorGUILayout.ObjectField("Item icon", item.icon, typeof(Sprite), false);
             item.icon2 = (Sprite)EditorGUILayout.ObjectField("Item icon2", item.icon2, typeof(Sprite), false);
